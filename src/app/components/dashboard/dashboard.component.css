@@ -1,0 +1,74 @@
+
+.type-brand > h4{
+    font-size: 1.15rem !important;
+    font-weight: bold !important;
+    color: black !important;
+}
+
+.btn-warning{
+    background-color: var(--creditclan-orange);
+    border: 1px solid var(--creditclan-orange);
+    border-radius: 4px;
+}
+
+.credit-card{
+    background-color: white;
+    cursor: pointer;
+    transform: scale(1);
+    box-shadow:  0 0 0 0 white;
+    transition: all 0.4s ease-in;
+}
+
+.credit-card:hover{
+  transform: scale(1.02);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.statement{
+    background-color: var(--credit-clan-lightGrey);
+}
+
+.settings{
+    background-color: var(--credticlan-blue);
+}
+
+.settings h4{
+    color: var(--credit-clan-lightGrey) !important;
+}
+
+
+
+.btn-settings{
+    background-color: transparent;
+    border-radius: 4px;
+    color: var(--credit-clan-lightGrey);
+    border: 1px solid var(--credit-clan-lightGrey);
+}
+
+.statements_left{
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: black;
+    line-height: 1.5 !important;
+}
+
+.goToHistory{
+    color: var(--credticlan-blue);
+    cursor: pointer;
+    padding: .3rem .5rem;
+    border: 1px solid var(--credticlan-blue);
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.4s ease-in-out;
+}
+
+.goToHistory:hover{
+    color: white;
+    background-color: var(--credticlan-blue);
+}
+
+.info{
+    color: black;
+    font-size: 1rem;
+    font-weight: 600; 
+}

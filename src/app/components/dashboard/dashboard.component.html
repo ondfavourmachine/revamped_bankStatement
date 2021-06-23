@@ -1,0 +1,303 @@
+
+<div id="preloader">
+    <i>.</i>
+    <i>.</i>
+    <i>.</i>
+</div>
+
+<div id="main-wrapper">
+
+
+    <div class="header">
+    <div class="container">
+       <div class="row">
+          <div class="col-xxl-12">
+             <div class="header-content">
+                <div class="header-left">
+                   <div class="brand-logo"><a class="mini-logo" href="index.html"><img src="images/logoi.png" alt="" width="40"></a></div>
+                   <div class="search">
+                      <form action="#">
+                         <div class="input-group"><input type="text" class="form-control" placeholder="Search Here"><span class="input-group-text"><i class="ri-search-line"></i></span></div>
+                      </form>
+                   </div>
+                </div>
+                <div class="header-right">
+                   <div class="dark-light-toggle"><span class="dark"><i class="ri-moon-line"></i></span><span class="light"><i class="ri-sun-line"></i></span></div>
+                   <div class="nav-item dropdown notification dropdown">
+                      <div data-toggle="dropdown" aria-haspopup="true" class="" aria-expanded="false">
+                         <div class="notify-bell icon-menu"><span><i class="ri-notification-2-line"></i></span></div>
+                      </div>
+                      <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu notification-list dropdown-menu dropdown-menu-right">
+                         <h4>Recent Notification</h4>
+                         <div class="lists">
+                            <a class="" href="index.html#">
+                               <div class="d-flex align-items-center">
+                                  <span class="me-3 icon success"><i class="ri-check-line"></i></span>
+                                  <div>
+                                     <p>Account created successfully</p>
+                                     <span>2020-11-04 12:00:23</span>
+                                  </div>
+                               </div>
+                            </a>
+                            <a class="" href="index.html#">
+                               <div class="d-flex align-items-center">
+                                  <span class="me-3 icon fail"><i class="ri-close-line"></i></span>
+                                  <div>
+                                     <p>2FA verification failed</p>
+                                     <span>2020-11-04 12:00:23</span>
+                                  </div>
+                               </div>
+                            </a>
+                            <a class="" href="index.html#">
+                               <div class="d-flex align-items-center">
+                                  <span class="me-3 icon success"><i class="ri-check-line"></i></span>
+                                  <div>
+                                     <p>Device confirmation completed</p>
+                                     <span>2020-11-04 12:00:23</span>
+                                  </div>
+                               </div>
+                            </a>
+                            <a class="" href="index.html#">
+                               <div class="d-flex align-items-center">
+                                  <span class="me-3 icon pending"><i class="ri-question-mark"></i></span>
+                                  <div>
+                                     <p>Phone verification pending</p>
+                                     <span>2020-11-04 12:00:23</span>
+                                  </div>
+                               </div>
+                            </a>
+                            <a href="notification.html">More<i class="ri-arrow-right-s-line"></i></a>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="dropdown profile_log dropdown">
+                      <div data-toggle="dropdown" aria-haspopup="true" class="" aria-expanded="false">
+                         <div class="user icon-menu active"><span><i class="ri-user-line"></i></span></div>
+                      </div>
+                      <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu dropdown-menu-right">
+                         <div class="user-email">
+                            <div class="user">
+                               <span class="thumb"><img src="images/profile/3.png" alt=""></span>
+                               <div class="user-info">
+                                  <h5>Jannatul Maowa</h5>
+                                  <span>Creditclan.inc@gmail.com</span>
+                               </div>
+                            </div>
+                         </div>
+                         <a class="dropdown-item" href="profile.html"><span><i class="ri-user-line"></i></span>History</a>
+                         <a class="dropdown-item" href="balance.html"><span><i class="ri-wallet-line"></i></span>Top up</a>
+                         <a class="dropdown-item" href="balance.html"><span><i class="ri-share-box-line"></i></span>Share link to customer</a>
+                         <a class="dropdown-item" href="settings-profile.html"><span><i class="ri-settings-3-line"></i></span>Settings</a>
+                         
+                         <a (click)="logout()" class="dropdown-item logout" href="javascript:void(0)"><i class="ri-logout-circle-line"></i>Logout</a>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+
+    <div class="sidebar">
+    <div class="brand-logo"><a class="full-logo" href="index.html"><img src="images/logoi.png" alt="" width="30"></a></div>
+    <div class="menu">
+        <ul>
+            <li><a href="index-2.html">
+                    <span><i class="ri-home-5-line"></i></span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+            </li>
+            <li><a href="balance.html">
+                    <!-- <span><i class="ri-wallet-line"></i></span> -->
+                    <span><img src="../../../assets/images/change_plan.svg" alt=""></span>
+                    <span class="nav-text" style="width: 150px;">Change Plan</span>
+                </a>
+            </li>
+            <!-- <li><a href="bill.html">
+                    <span><i class="ri-secure-payment-line"></i></span>
+                    <span class="nav-text">Payment</span>
+                </a>
+            </li> -->
+            <!-- <li><a href="invoice.html">
+                    <span><i class="ri-file-copy-2-line"></i></span>
+                    <span class="nav-text">Invoice</span>
+                </a>
+            </li> -->
+            <li><a href="settings-profile.html">
+                    <span><i class="ri-settings-3-line"></i></span>
+                    <span class="nav-text">Settings</span>
+                </a>
+            </li>
+            <li  class="logout"><a (click)="logout()" href="javascript:void(0)">
+                    <span ><i class="ri-logout-circle-line"></i></span>
+                    <span (click)="logout()" class="nav-text">Signout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+    <div class="content-body">
+        <div class="container">
+            <div class="page-title">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-xl-4">
+                        <div class="page-title-content">
+                            <h3>Dashboard</h3>
+                            <p class="mb-2">Bank Statement dashboard </p>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="breadcrumbs"><a href="#">Home </a><span><i
+                                    class="ri-arrow-right-s-line"></i></span><a href="#">Dashboard</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-4">
+                            <div class="credit-card visa">
+                                <div class="type-brand justify-content-end">
+                                    <h4>Analyse</h4>
+                                    <!-- <img src="../assets/images/cc/visa.png" alt=""> -->
+                                </div>
+                                <div class="d-flex justify-content-between w-100">
+                                    <div class="">
+                                        <app-analysis-component
+                                        [type]="'analysis'"></app-analysis-component>
+                                    </div>
+                                    <div class="align-self-end cc-holder-exp">
+                                       <button class="btn btn-warning">Analyse</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4">
+                            <div class="credit-card visa statement">
+                                <div class="type-brand justify-content-end">
+                                    <h4>Statements Left</h4>
+                                    <!-- <img src="../assets/images/cc/visa.png" alt=""> -->
+                                </div>
+                                <div class="d-flex justify-content-between w-100">
+                                    <div class="">
+                                        <app-analysis-component
+                                         [type]="'statement'"></app-analysis-component>
+                                    </div>
+                                    <div class="align-self-end cc-holder-exp">
+                                        <span class="statements_left">
+                                            9990
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4">
+                            <div class="credit-card visa settings">
+                                <div class="type-brand justify-content-end">
+                                    <h4>Settings</h4>
+                                    <!-- <img src="../assets/images/cc/visa.png" alt=""> -->
+                                </div>
+                                <div class="d-flex justify-content-between w-100">
+                                    <div class="svg_container__three">
+                                        <app-analysis-component
+                                        [type]="'settings'"></app-analysis-component>
+                                    </div>
+                                    <div class="align-self-end cc-holder-exp">
+                                       <button title="change my settings" class="btn btn-warning btn-settings">Settings</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div> 
+                    
+                    
+                    <!-- <div class="card">
+                        <div class="card-header mx-auto">
+                            <h4 class="card-title text-center">Analyse</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                    <div class="stat-widget d-flex align-items-center">
+                                        <div class="widget-icon me-3 bg-primary"><span><i
+                                                    class="ri-wallet-line"></i></span></div>
+                                        <div class="widget-content">
+                                            <h3>432568</h3>
+                                            <p>Last Balance</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                    <div class="stat-widget d-flex align-items-center">
+                                        <div class="widget-icon me-3 bg-secondary"><span><i
+                                                    class="ri-wallet-2-line"></i></span></div>
+                                        <div class="widget-content">
+                                            <h3>245860</h3>
+                                            <p>Hold Balance</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="col-xxl-12">
+                    
+
+                    <div class="card">
+                        <div class="card-header mx-4">
+                           <h4 class="card-title"> Recent Analysis history</h4>
+                           <span class="goToHistory">See more</span>
+                        </div>
+                        <div class="card-body">
+                           <div class="table-responsive table-icon">
+                              <table class="table">
+                                 <thead>
+                                    <tr>
+                                       <th class="text-center">Name</th>
+                                       <th class="text-center">AI Score</th>
+                                       <th class="text-center">Summary</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <td class="text-center info">Sochineme Nebechi</td>
+                                       <td class="text-center info">81%</td>
+                                       <td class="text-center"> <span class="goToHistory">View more</span> </td>
+                                       
+                                    </tr>
+                                    <!-- <tr>
+                                       <td>1 day ago</td>
+                                       <td>Chrome (Windows)</td>
+                                       <td>250.364.239.254</td>
+                                       <td>Bangladesh, Dhaka</td>
+                                       <td><span><i class="ri-check-line text-success me-1"></i></span><span><i class="ri-close-line text-danger"></i></span></td>
+                                    </tr>
+                                    <tr>
+                                       <td>1 day ago</td>
+                                       <td>Chrome (Windows)</td>
+                                       <td>250.364.239.254</td>
+                                       <td>Bangladesh, Dhaka</td>
+                                       <td><span><i class="ri-check-line text-success me-1"></i></span><span><i class="ri-close-line text-danger"></i></span></td>
+                                    </tr> -->
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                     
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
