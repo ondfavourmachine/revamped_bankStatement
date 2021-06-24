@@ -99,7 +99,8 @@ export class LoginComponent implements OnInit {
                 response.user.transactions_left < 1
               ) {
                 this.generalservice.loading4button(loginButton, "done");
-                this.router.navigate(["/billing", { id: form.value.email }]);
+                // this.router.navigate(["/billing", { id: form.value.email }]);
+                this.router.navigate(['/dashboard']);
               } else {
                 this.showUserHisRecentlyAnalysedStatement(response.user);
                 this.generalservice.loading4button(loginButton, "done");

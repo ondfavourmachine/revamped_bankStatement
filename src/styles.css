@@ -204,3 +204,10 @@
     fill: var(--credit-clan-lightGrey);
 }
   /* dashboard */
+
+
+
+  /* off canvas */
+  .offcanvas-end{
+    width: 500px !important;
+  }

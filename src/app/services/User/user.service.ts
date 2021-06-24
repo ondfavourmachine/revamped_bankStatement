@@ -7,7 +7,7 @@ import { Bank, DashboardData } from "../../models/dashboard-data";
 // import { inject } from "@angular/core/testing";
 import { TransactionHistory } from "src/app/models/transactionHistory";
 import { GeneralApi } from "src/app/generalApi";
-import { timeout } from "rxjs/operators";
+
 
 @Injectable({
   providedIn: "root"

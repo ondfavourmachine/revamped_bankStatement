@@ -82,7 +82,6 @@ export class SignupComponent implements OnInit {
       this.authservice
         .registrationRequest(formToSubmit)
         .pipe(
-          retry(2),
           timeout(20000)
         )
         .subscribe(
@@ -197,6 +196,10 @@ export class SignupComponent implements OnInit {
       this.toaster.showErrorMsg("You do not have an active internet connection. Please, check and try again");
       return;
     }
+    if(err instanceof HttpErrorResponse  && err.status == 500){
+      this.router.navigate(['dashboard']);
+      return;
+    }
     if (err instanceof HttpErrorResponse && err.status == 0) {
       // console.log(error);
       this.generalservice.loading4button(button, "done", "");
@@ -224,9 +227,10 @@ export class SignupComponent implements OnInit {
       //   delete this.alertContainer["instance"];
       // }, 3000);
     } else {
-      this.router.navigate(["/login"], {
-        queryParams: { returnUrl: "/billing" }
-      });
+      // this.router.navigate(["/login"], {
+      //   queryParams: { returnUrl: "/billing" }
+      // });
+      
       this.generalservice.loading4button(button, "done", "");
       // this.alertContainer["instance"] = new Alert(
       //   "alert-soft-danger fade show",
