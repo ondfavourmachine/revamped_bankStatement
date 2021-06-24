@@ -387,7 +387,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       val => {
         document.querySelector('.statements_left').textContent = `${val.transactions.length}`;
         this.transactionsHistoryTable = val.transactions;
-        console.log(this.transactionsHistoryTable[0].summary);
+        
       },
       err => console.log(err)
     )

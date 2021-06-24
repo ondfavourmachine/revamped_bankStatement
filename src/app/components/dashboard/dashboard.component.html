@@ -275,7 +275,7 @@
                                  </thead>
                                  <tbody>
                                     <tr *ngFor="let transaction of transactionsHistoryTable | slice:0:5; index as i">
-                                       <td class="text-center info"> {{ currentUser?.fullname}} </td>
+                                       <td class="text-center info"> {{ transaction?.summary?.name_check?.account_name || 'Not Available' }} </td>
                                        <td class="text-center info"> {{transaction?.date | date: 'mediumDate'}} </td>
                                        <td class="text-center info">{{ transaction?.analytics_score }}%</td>
                                        <td class="text-center info controlled"> {{ transaction?.file_url_remote}} </td>
@@ -319,7 +319,7 @@
     data-bs-toggle="offcanvas" 
     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle right offcanvas</button>
     
-    <div [style.width]="componentToDisplay == 'history' ? '60vw !important':'500px'"  class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div [style.width]="componentToDisplay == 'history' ? '65vw !important':'500px'"  class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div [ngSwitch]="componentToDisplay">
             <div *ngSwitchCase="'summary'">
                 <app-summary

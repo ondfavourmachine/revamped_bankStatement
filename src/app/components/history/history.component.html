@@ -25,7 +25,7 @@
                                 </thead>
                                 <tbody class="overflow-auto">
                                     <tr *ngFor="let transaction of data; index as i">
-                                        <td class="text-center info"> {{ currentUser?.fullname}} </td>
+                                        <td class="text-center info"> {{ transaction?.summary?.name_check?.account_name || 'Not Available' }} </td>
                                         <td class="text-center info"> {{transaction?.date | date: 'mediumDate'}} </td>
                                         <td class="text-center info">{{ transaction?.analytics_score }}%</td>
                                         <td class="text-center info controlled"> {{ transaction?.file_url_remote}} </td>
