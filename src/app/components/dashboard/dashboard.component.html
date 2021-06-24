@@ -319,7 +319,7 @@
     data-bs-toggle="offcanvas" 
     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle right offcanvas</button>
     
-    <div [style.width]="componentToDisplay == 'history' ? '650px !important':'500px'"  class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div [style.width]="componentToDisplay == 'history' ? '60vw !important':'500px'"  class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div [ngSwitch]="componentToDisplay">
             <div *ngSwitchCase="'summary'">
                 <app-summary
@@ -327,8 +327,9 @@
             </div>
             <div *ngSwitchCase="'history'">
                 <app-history
+                [data]="dataForComponent"
                  ></app-history>
-                 <!-- [data]="dataForComponent" -->
+                 <!--  -->
             </div>
             <div *ngSwitchDefault>
 
