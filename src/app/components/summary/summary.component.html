@@ -1,0 +1,51 @@
+
+<div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel"></h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+      <div class="container">
+        <div class="row">
+            <h1>Summary </h1>
+            <div class="col-xxl-12 col-xl-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <!-- <h4 class="card-title">Details</h4> -->
+                    </div>
+                    <div class="card-body">
+                        <div class="card-body">
+                            <div class="unpaid-content">
+                                <ul>
+
+                                    <li>
+                                        <p class="mb-0 fw-bold">Transaction Total</p>
+                                        <h5 class="mb-0">{{ data?.total_deposit ? '&#x20A6;' + data?.total_deposit : 'N/A' }} </h5>
+                                    </li>
+                                    <li>
+                                        <p class="mb-0 fw-bold">Monthly  Deposit</p>
+                                        <h5 class="mb-0">{{ data?.average_monthly_deposit ? '&#x20A6;' + data?.average_monthly_deposit : 'N/A' }} </h5>
+                                    </li>
+                                    <li>
+                                        <p class="mb-0 fw-bold">Monthly  Withdrawal</p>
+                                        <h5 class="mb-0">{{ data?.average_monthly_withdraw ? '&#x20A6;' + data?.average_monthly_withdraw : 'N/A'}} </h5>
+                                    </li>
+                                   
+                                    <li>
+                                        <p class="mb-0 fw-bold">Total Loans</p>
+                                        <h5 class="mb-0">{{  data?.total_loans_disbursed ? '&#x20A6;' + data?.total_loans_disbursed : 'N/A'}} </h5>
+                                    </li>
+                                    
+                                    <li>
+                                        <p class="mb-0 fw-bold">Total Paid</p>
+                                        <h5 class="mb-0">{{ data?.total_loans_repaid ? '&#x20A6;' + data?.total_loans_repaid :'N/A'}}</h5>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+      </div>
+  </div>

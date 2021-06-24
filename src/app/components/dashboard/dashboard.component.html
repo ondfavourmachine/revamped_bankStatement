@@ -259,7 +259,7 @@
                                <div class="input-group"><input type="text" class="form-control" placeholder="Search Here"><span class="input-group-text"><i class="ri-search-line"></i></span></div>
                             </form>
                          </div>
-                           <span class="goToHistory">See more</span>
+                           <span class="goToHistory" (click)="allHistory()">See more</span>
                         </div>
                         <div class="card-body">
                            <div class="table-responsive table-icon">
@@ -319,14 +319,22 @@
     data-bs-toggle="offcanvas" 
     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle right offcanvas</button>
     
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-      <div class="offcanvas-header">
-        <h5 id="offcanvasRightLabel">Offcanvas right</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        ...
-      </div>
+    <div [style.width]="componentToDisplay == 'history' ? '650px !important':'500px'"  class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div [ngSwitch]="componentToDisplay">
+            <div *ngSwitchCase="'summary'">
+                <app-summary
+                 [data]="dataForComponent"></app-summary>
+            </div>
+            <div *ngSwitchCase="'history'">
+                <app-history
+                 ></app-history>
+                 <!-- [data]="dataForComponent" -->
+            </div>
+            <div *ngSwitchDefault>
+
+            </div>
+          </div>
+      
     </div>
 
 </div>

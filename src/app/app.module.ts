@@ -19,6 +19,8 @@ import { ToasterService } from './services/Toaster/toaster.service';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import { AnalysisComponentComponent } from './components/analysis-component/analysis-component.component';
+import { SummaryComponent } from './components/summary/summary.component';
+import { HistoryComponent } from './components/history/history.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { AnalysisComponentComponent } from './components/analysis-component/anal
     LoginComponent,
     SignupComponent,
     DashboardComponent,
-    AnalysisComponentComponent
+    AnalysisComponentComponent,
+    SummaryComponent,
+    HistoryComponent
   ],
   imports: [
     FormsModule,

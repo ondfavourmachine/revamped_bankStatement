@@ -36,7 +36,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   userWantsToSendCustomerForBS: boolean = false;
   NigerianBanks: Bank[] = [];
   userDetails = {}
+  componentToDisplay: 'summary' | 'history' | '' = '';
   transactionsHistoryTable: Transactions[] = [];
+  dataForComponent = {};
 
   public alertContainer: AlertObject = { instance: null };
 
@@ -398,6 +400,26 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   viewHistory(transaction: Transactions){
    ( document.getElementById('triggerForOffCanvas') as HTMLElement).click();
+   
+   const { 
+     average_monthly_deposit, 
+     average_monthly_withdraw, 
+     total_loans_disbursed, 
+     total_deposit, 
+     total_loans_repaid 
+    } = transaction.summary;
+    const data = {average_monthly_deposit, average_monthly_withdraw, total_loans_disbursed, total_deposit, total_loans_repaid};
+    for(let d in data){
+      this.dataForComponent[d] = this.modifyAnalysisData(data[d]);
+    }
+    this.componentToDisplay = 'summary';
+  }
+
+  modifyAnalysisData(number: number){
+    if(!number) return number;
+    let num: any = number.toFixed(2);
+    num = parseInt(num);
+   return  (new Intl.NumberFormat('en').format( num ));
   }
 
 
@@ -416,5 +438,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     // else {
     //   console.error;
     // }
+  }
+
+  allHistory(){
+    ( document.getElementById('triggerForOffCanvas') as HTMLElement).click();
+    this.componentToDisplay = 'history';
+    this.dataForComponent = this.transactionsHistoryTable;
   }
 }

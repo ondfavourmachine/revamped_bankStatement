@@ -6,7 +6,7 @@ export interface TransactionHistory {
 export interface Transactions {
   transaction_id: string;
   file_url_remote: string;
-  summary: string | object;
+  summary: Record<any, any>;
   analytics_score: number;
   date: string;
 }
