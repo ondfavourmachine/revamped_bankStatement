@@ -314,7 +314,7 @@
                               </table>
                            </div>
 
-                           <div [ngClass]="{'d-block':transactionsHistoryTable.length < 1 && !loadingHistory }" class="empty w-50 mx-auto">
+                           <div *ngIf="transactionsHistoryTable.length < 1 && !loadingHistory" class="empty w-50 mx-auto">
                             <div class="w-100 h-50 d-flex justify-content-center flex-column align-items-center my-4">
                                 <div class="py-3 text-center" style="font-size: 1.4rem;">No Data was found! </div>
                    

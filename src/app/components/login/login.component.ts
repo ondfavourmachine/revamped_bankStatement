@@ -92,10 +92,14 @@ export class LoginComponent implements OnInit {
           //  login to creditclan
             const res = await this.authservice.loginToCreditClan(formToSubmit);
             if((res as Object).hasOwnProperty('error')){
-                // register into creditclan.
+            const res =  await this.handleRegistrationIntoCreditclan(formToSubmit);
+            this.generalservice.saveStuff(
+              this.generalservice.encodeStuff(creditClanToken),
+              res.token
+            );
             }
             const {token} = res;
-            console.log(token);
+            // console.log(token);
             this.generalservice.saveStuff(
               this.generalservice.encodeStuff(creditClanToken),
               token
@@ -355,6 +359,17 @@ export class LoginComponent implements OnInit {
     this.router.navigate(["/login"]);
   }
 
+
+ async handleRegistrationIntoCreditclan(formToSubmit): Promise<any>{
+      formToSubmit.legal_name ='default biz';
+      formToSubmit.business_name = 'Creditclan default';
+      formToSubmit.phone = '08082778904';
+
+      console.log(formToSubmit);
+      const res = await this.authservice.registerToCreditClan(formToSubmit);
+      return new Promise((resolve, reject) => resolve(res));
+      
+  }
 
 
 }

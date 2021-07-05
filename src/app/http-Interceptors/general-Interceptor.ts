@@ -20,6 +20,9 @@ export class GeneralInterceptor implements HttpInterceptor {
     if (!authToken) {
       return next.handle(request);
     } else {
+      if(request.url.includes('onboard')){
+        return next.handle(request);
+       }
      if(request.url.includes('initialize')){
       // const clonedRequest = request.clone({
       //   headers: request.headers.set("Authorization", `Bearer ${creditToken}`)
