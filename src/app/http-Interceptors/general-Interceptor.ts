@@ -16,14 +16,28 @@ export class GeneralInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const authToken = this.generalservice.getSavedToken();
+    const creditToken = this.generalservice.getCreditClanSavedToken();
     if (!authToken) {
       return next.handle(request);
     } else {
+     if(request.url.includes('initialize')){
+      // const clonedRequest = request.clone({
+      //   headers: request.headers.set("Authorization", `Bearer ${creditToken}`)
+      // });
+      return next.handle(request);
+     }
+
+     if(request.url.includes('authenticate')){
+      return next.handle(request);
+     }
+     else{
       const clonedRequest = request.clone({
         headers: request.headers.set("Authorization", `Bearer ${authToken}`)
       });
-
       return next.handle(clonedRequest);
+     }
+
+      
     }
   }
 }

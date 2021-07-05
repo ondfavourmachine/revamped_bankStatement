@@ -8,6 +8,7 @@ import { DashboardData } from "../models/dashboard-data";
 })
 export class GeneralService {
   nameOfstring = "access_token";
+  creditClanString = 'credit_clan_token';
   public fromLend: boolean = false;
   public notAbleToLoginUserInfromLend: boolean = true;
   public notifierSubject = new Subject();
@@ -83,6 +84,10 @@ export class GeneralService {
 
   getSavedToken(): string {
     return sessionStorage.getItem(this.encodeStuff(this.nameOfstring));
+  }
+
+  getCreditClanSavedToken(): string{
+    return sessionStorage.getItem(this.encodeStuff(this.creditClanString));
   }
 
   logOut(): void {

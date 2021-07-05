@@ -1,0 +1,32 @@
+
+
+
+.makeUpBtn{
+    border: 2px solid #61A7C5;
+    font-size: 1.25rem;
+    color: black;
+    border-radius: 5px !important;
+}
+
+.makeUpBtn.orange{
+    border: 2px solid #61A7C5;
+    color:  black
+}
+
+
+
+.amended{
+    width: fit-content !important;
+    padding: 10px 40px;
+    border-radius: 6px !important;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transform: scale(1);
+    cursor: pointer;
+    transition: all .3s ease-in;
+
+}
+
+.amended:hover{
+    transform: scale(1.03)
+}
+

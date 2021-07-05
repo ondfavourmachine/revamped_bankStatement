@@ -7,6 +7,11 @@ import { ResetPassword } from "../models/resetPassword";
 import { switchMap, catchError, retry } from "rxjs/operators";
 import { GeneralApi } from "../generalApi";
 
+export interface CreditClanLoginResponse{
+  legal_name?: string, token?: string,
+  checked?: boolean, error?: string
+}
+
 @Injectable({
   providedIn: "root"
 })
@@ -22,7 +27,7 @@ export class AuthService {
   // makes an http post login request and returns an observable response
   public LoginRequest(form?: LoginForm): Observable<any> {
     // console.log(form);
-    return this.http.post(`${GeneralApi}login`, form);
+    return this.http.post<any>(`${GeneralApi}login`, form);
   }
 
   public forgotPassword(email: Object): Observable<any> {
@@ -37,6 +42,16 @@ export class AuthService {
     return this.http
       .get(`${GeneralApi}analytics/status/${transactionID}`)
       .toPromise();
+  }
+
+  public loginToCreditClan(form?: any): Promise< CreditClanLoginResponse>{
+    form['grant_type'] = 'password';
+    return this.http.post<any>(`https://api-collections.creditclan.com/authenticate`, form).toPromise();
+  }
+
+  public registerToCreditClan(form?: any){
+    form['grant_type'] = '';
+    return this.http.post(`https://api-collections.creditclan.com/onboard`, form).toPromise();
   }
 
   handleTrafficFromLend(token: string, div: HTMLDivElement) {

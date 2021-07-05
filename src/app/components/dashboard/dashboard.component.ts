@@ -14,6 +14,8 @@ import { timeout } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/User/user.service';
 import { Transactions } from 'src/app/models/transactionHistory';
+import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import { Color, Label } from 'ng2-charts';
 declare var CreditClan: any;
 
 @Component({
@@ -24,7 +26,8 @@ declare var CreditClan: any;
 export class DashboardComponent implements OnInit, AfterViewInit {
   screensize: string = "desktop";
   origin: string;
-  currentUser: User = {}
+  currentUser: User = {};
+  loadingHistory: boolean = true;
   // this.generalservice.checkDisplayAndSetAppropriateView();
   theUserDetails: object = {};
   payStackPayment: PaymentApi;
@@ -36,15 +39,31 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   userWantsToSendCustomerForBS: boolean = false;
   NigerianBanks: Bank[] = [];
   userDetails = {}
-  componentToDisplay: 'summary' | 'history' | '' = '';
+  componentToDisplay: 'summary' | 'history' | 'initiate' | 'add_account' | '' = '';
   transactionsHistoryTable: Transactions[] = [];
   dataForComponent = {};
+  noAccountCollection: boolean = false;
 
   public alertContainer: AlertObject = { instance: null };
 
   cc: any;
 
   public title: string;
+
+  barChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  barChartLabels: Label[] = ['Apple', 'Banana', 'Kiwifruit', 'Blueberry', 'Orange', 'Grapes'];
+  barChartType: ChartType = 'bar';
+  barChartLegend = true;
+  barChartPlugins = [];
+
+  barChartData: ChartDataSets[] = [
+
+    { data: [45, 37, 60, 70, 46, 33], label: 'Best Fruits', backgroundColor: '#126AFF', hoverBackgroundColor: '#ff9800', pointHoverBackgroundColor: '#ff9800' }
+  ];
+
+  
 
   constructor(
     private userservice: UserService,
@@ -383,13 +402,17 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   fetchStatementHistory(){
+    this.loadingHistory = true;
     this.userservice.getHistoryOfUserAnalysedStatements().subscribe(
       val => {
         document.querySelector('.statements_left').textContent = `${val.transactions.length}`;
         this.transactionsHistoryTable = val.transactions;
-        
+        this.loadingHistory = false;   
       },
-      err => console.log(err)
+      err => {
+        console.log(err);
+        this.loadingHistory = false;
+      }
     )
   }
 
@@ -444,5 +467,34 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     ( document.getElementById('triggerForOffCanvas') as HTMLElement).click();
     this.componentToDisplay = 'history';
     this.dataForComponent = this.transactionsHistoryTable;
+  }
+
+  initiateBankStatementForCustomer(){
+    this.componentToDisplay = 'initiate';
+    document.getElementById('triggerForOffCanvas').click();
+  }
+
+  startAccountAddition(event: string){
+    if(event == 'add'){
+      (document.querySelector('.btn-close') as HTMLElement).click();
+      setTimeout(() => {
+        this.noAccountCollection = false;
+        this.componentToDisplay = 'add_account';
+        document.getElementById('triggerForOffCanvas').click();
+      }, 600);
+    }else{
+      this.noAccountCollection = true;
+      (document.querySelector('.btn-close') as HTMLElement).click();
+      setTimeout(() => {
+        this.componentToDisplay = 'add_account';
+        document.getElementById('triggerForOffCanvas').click();
+      }, 600);
+    }
+  
+  }
+
+  returnSomething(something: any): string{
+    if(something) return `${something}%`;
+    else return 'Not Avalaible';
   }
 }

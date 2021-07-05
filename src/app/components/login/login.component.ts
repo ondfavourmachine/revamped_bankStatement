@@ -62,6 +62,7 @@ export class LoginComponent implements OnInit {
   // this function will log the user into the application
   submitLogin(form: FormGroup) {
     let nameOfToken: string = "access_token";
+    let creditClanToken: string = 'credit_clan_token'
     let loginButton = document.getElementById(
       "loginButton"
     ) as HTMLButtonElement;
@@ -87,6 +88,17 @@ export class LoginComponent implements OnInit {
             this.generalservice.saveStuff(
               this.generalservice.encodeStuff(nameOfToken),
               val["token"]
+            );
+          //  login to creditclan
+            const res = await this.authservice.loginToCreditClan(formToSubmit);
+            if((res as Object).hasOwnProperty('error')){
+                // register into creditclan.
+            }
+            const {token} = res;
+            console.log(token);
+            this.generalservice.saveStuff(
+              this.generalservice.encodeStuff(creditClanToken),
+              token
             );
             try {
               let response: DashboardData = await this.getLoggedInUserDashBoardData();

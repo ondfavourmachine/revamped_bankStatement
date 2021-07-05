@@ -1,0 +1,55 @@
+
+
+.btn-primary{
+    border-radius: 5px !important;
+}
+
+.surround{
+    border-radius: 5px;
+}
+
+.form-control, .form-select{
+    border: 2px solid #e5e5e5;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+}
+
+.form-control:disabled{
+    background-color: transparent !important;
+}
+
+.form-control:focus, select:focus{
+    border-bottom: 2px solid var(--credticlan-blue);
+}
+
+.text_information span{
+    font-size: 1.35rem;
+    color: black;
+    line-height: 1.5;
+}
+
+.copyLink{
+    border: 1px solid var(--credticlan-blue);
+    border-radius: 5px;
+    font-size: 1.05rem !important;
+    cursor: pointer;
+}
+
+.copyLink:hover{
+    background-color: var(--credticlan-blue);
+    color: white !important;
+    transition: all 0.3s ease-in;
+}
+
+.spinner{
+    top: 23px;
+    right: 0;
+    font-size: 2rem;
+    
+}
+
+.spinner i{
+    color: var(--creditclan-blue) !important;
+}

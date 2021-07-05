@@ -56,7 +56,7 @@ export class UserService {
   }
 
 
-  confirmAccountDetailsOfParent(obj: { bank_code: any; account_number: any }) {
+  confirmAccountDetailsOfParent(obj: { bank_code: any; account_number: any }):Observable<{data:  { account_number: string, account_name: string, bank_id: number }, message: string, status: boolean}>{
     let url = "https://mobile.creditclan.com/webapi/v1/account/resolve";
     const confirmAccount = async (obj) => {
       const res = await fetch(url, {
@@ -76,7 +76,7 @@ export class UserService {
   }
 
 
-  fetchBankNames(): Observable<any>{ 
+  fetchBankNames(): Observable<Bank[]>{ 
     let url = "https://mobile.creditclan.com/webapi/v1/banks";
     const getNigerianBanks = async () => {
       const res = await fetch(url, {
@@ -86,7 +86,7 @@ export class UserService {
       })
 
      const banks = await res.json();
-     return banks;
+     return banks.data as Bank[];
     }
 
     const obs = from(getNigerianBanks());
@@ -114,4 +114,10 @@ export class UserService {
     const obs = from(initiateBSForCustomer(form));
     return obs;
   }
+
+
+  initiateBSForACustomer(obj: Object): Observable<{message: string, status: boolean, url: string}>{
+    return this.http.post<any>(`https://api-collections.creditclan.com/bankstatement/initialize`, obj);
+  }
+
 }

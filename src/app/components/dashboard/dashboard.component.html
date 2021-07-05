@@ -86,7 +86,7 @@
                          </div>
                          <a class="dropdown-item" href="profile.html"><span><i class="ri-user-line"></i></span>History</a>
                          <a class="dropdown-item" href="balance.html"><span><i class="ri-wallet-line"></i></span>Top up</a>
-                         <a class="dropdown-item" href="balance.html"><span><i class="ri-share-box-line"></i></span>Share link to customer</a>
+                         <a class="dropdown-item" (click)="initiateBankStatementForCustomer()" href="javascript:void(0)"><span><i class="ri-share-box-line"></i></span>Initiate Analysis</a>
                          <a class="dropdown-item" href="settings-profile.html"><span><i class="ri-settings-3-line"></i></span>Settings</a>
                          
                          <a (click)="logout()" class="dropdown-item logout" href="javascript:void(0)"><i class="ri-logout-circle-line"></i>Logout</a>
@@ -197,18 +197,29 @@
 
                         <div class="col-xl-4 col-lg-4">
                             <div class="credit-card visa settings">
-                                <div class="type-brand justify-content-end">
+                                <!-- <div class="type-brand justify-content-end">
                                     <h4>Settings</h4>
-                                    <!-- <img src="../assets/images/cc/visa.png" alt=""> -->
-                                </div>
+                                   
+                                </div> -->
                                 <div class="d-flex justify-content-between w-100">
-                                    <div class="svg_container__three">
-                                        <app-analysis-component
-                                        [type]="'settings'"></app-analysis-component>
+                                    <div class="svg_container__three w-100" style="height: 187px;">
+                                        <!-- <app-analysis-component
+                                        [type]="'settings'"></app-analysis-component> -->
+                                        <div class="chart-wrapper w-100">
+                                            <canvas baseChart 
+                                            [datasets]="barChartData"
+                                            [labels]="barChartLabels"
+                                            [options]="barChartOptions"
+                                            [plugins]="barChartPlugins"
+                                            [legend]="barChartLegend"
+                                            [chartType]="barChartType">
+                                          </canvas>
+                                        </div>
+                                        
                                     </div>
-                                    <div class="align-self-end cc-holder-exp">
+                                    <!-- <div class="align-self-end cc-holder-exp">
                                        <button title="change my settings" class="btn btn-warning btn-settings">Settings</button>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -262,7 +273,7 @@
                            <span class="goToHistory" (click)="allHistory()">See more</span>
                         </div>
                         <div class="card-body">
-                           <div class="table-responsive table-icon">
+                           <div [ngClass]="{'d-block':transactionsHistoryTable.length > 0}" class="table-responsive table-icon">
                               <table class="table">
                                  <thead>
                                     <tr>
@@ -277,8 +288,8 @@
                                     <tr *ngFor="let transaction of transactionsHistoryTable | slice:0:5; index as i">
                                        <td class="text-center info"> {{ transaction?.summary?.name_check?.account_name || 'Not Available' }} </td>
                                        <td class="text-center info"> {{transaction?.date | date: 'mediumDate'}} </td>
-                                       <td class="text-center info">{{ transaction?.analytics_score }}%</td>
-                                       <td class="text-center info controlled"> {{ transaction?.file_url_remote}} </td>
+                                       <td class="text-center info">{{ returnSomething(transaction?.analytics_score) }}</td>
+                                       <td class="text-center info controlled"> {{ transaction?.file_url_remote || "Not Available"}} </td>
                                        <td class="text-center"> 
                                            <span (click)="viewHistory(transaction)" class="goToHistory me-2">Summary</span> 
                                            <a target="_blank" [href]="transaction?.summary?.link" class="goToHistory file">View report</a>
@@ -302,6 +313,20 @@
                                  </tbody>
                               </table>
                            </div>
+
+                           <div [ngClass]="{'d-block':transactionsHistoryTable.length < 1 && !loadingHistory }" class="empty w-50 mx-auto">
+                            <div class="w-100 h-50 d-flex justify-content-center flex-column align-items-center my-4">
+                                <div class="py-3 text-center" style="font-size: 1.4rem;">No Data was found! </div>
+                   
+                               <img style="max-width: 50%;" src="../../assets/images/no-data.svg" alt="">
+                   
+                             </div>
+                           </div>
+
+                           <div class="item w-100" *ngIf="loadingHistory">
+                            <ngx-skeleton-loader count="3" ></ngx-skeleton-loader>
+                           
+                          </div>
                         </div>
                      </div>
                      
@@ -319,7 +344,7 @@
     data-bs-toggle="offcanvas" 
     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle right offcanvas</button>
     
-    <div [style.width]="componentToDisplay == 'history' ? '65vw !important':'500px'"  class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div [style.width]="componentToDisplay == 'history' ? '65vw !important': componentToDisplay == 'initiate'? '350px !important' : '500px'"  class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div [ngSwitch]="componentToDisplay">
             <div *ngSwitchCase="'summary'">
                 <app-summary
@@ -329,6 +354,20 @@
                 <app-history
                 [data]="dataForComponent"
                  ></app-history>
+                 <!--  -->
+            </div>
+
+            <div *ngSwitchCase="'initiate'">
+                <app-initiate-bank-statement
+                  (accountAdd)="startAccountAddition($event)" 
+                 ></app-initiate-bank-statement>
+                 <!--  -->
+            </div>
+
+            <div *ngSwitchCase="'add_account'" style="overflow: auto;">
+                <app-add-account-details
+                 [noAccountCollection]="noAccountCollection"
+                 ></app-add-account-details>
                  <!--  -->
             </div>
             <div *ngSwitchDefault>

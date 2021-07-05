@@ -21,6 +21,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AnalysisComponentComponent } from './components/analysis-component/analysis-component.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { HistoryComponent } from './components/history/history.component';
+// import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ChartsModule } from 'ng2-charts';
+import { InitiateBankStatementComponent } from './components/initiate-bank-statement/initiate-bank-statement.component';
+import { AddAccountDetailsComponent } from './components/add-account-details/add-account-details.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [
@@ -30,9 +35,12 @@ import { HistoryComponent } from './components/history/history.component';
     DashboardComponent,
     AnalysisComponentComponent,
     SummaryComponent,
-    HistoryComponent
+    HistoryComponent,
+    InitiateBankStatementComponent,
+    AddAccountDetailsComponent
   ],
   imports: [
+    NgxSkeletonLoaderModule.forRoot({ animation: 'pulse', appearance: 'line' }),
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
@@ -41,6 +49,8 @@ import { HistoryComponent } from './components/history/history.component';
       "pk_test_6feb7dca80f00bc32d576032fe06b48b0a77708f"
     ),
     ToastrModule.forRoot(),
+    // NgxChartsModule,
+    ChartsModule,
     CoreModule,
     HttpClientModule,
     AppRoutingModule

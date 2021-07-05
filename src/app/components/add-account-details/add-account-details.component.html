@@ -1,0 +1,90 @@
+
+
+<div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel"></h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+      <div [style.display]="page == 'add_account' ? 'block': 'none'" class="container overflow-auto" style="height: 90vh;">
+        <h3 class="text-center">
+            Enter Customer Account Details
+        </h3>
+
+            <form [formGroup]="collectBankInformation"  class="">
+                <div class="px-3 py-1 mb-2 surround border">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Name</label>
+                        <input formControlName="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        
+                      </div>
+                      <div class="mb-3">
+                        <label for="enablesSelect" class="form-label">Email</label>
+                        <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      </div>
+              
+                      <div class="mb-3">
+                          <label for="exampleInputPassword1" class="form-label">Phone Number</label>
+                          <input (keypress)="numberOnly($event)" formControlName="phone" minlength="0" maxlength="11" type="tel" class="form-control" id="exampleInputPassword1">
+                        </div>
+                </div>
+
+                <div [style.display]="!noAccountCollection ? 'block':'none'" class="px-3 py-1 mb-2 surround border">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Account Number</label>
+                        <input (change)="fetchBankAcct($event)" formControlName="account_number" type="tel" minlength="0" maxlength="10" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        
+                      </div>
+                      <div class="mb-3">
+                        <label for="enablesSelect" class="form-label">Bank Name</label>
+                        <select (change)="fetchBankAcct($event)" formControlName="bank_id" id="enablesSelect" class="form-select">
+                            <option>Select Bank</option>
+                            <option [value]="bank.bank_code" *ngFor="let bank of NigerianBanks"> {{ bank?.name }} </option>
+                          </select>
+                      </div>
+              
+                      <div class="mb-3 position-relative">
+                          <label for="exampleInputPassword1" class="form-label">Account Name</label>
+                          <input disabled formControlName="account_name" type="text" class="form-control" id="exampleInputPassword1">
+                          <span *ngIf="checkingAcct" class="position-absolute spinner"><i class="fa fa-circle-notch fa-spin"></i></span>
+                        </div>
+                </div>
+        
+                 <div class="px-4 py-2 surround border">
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Start Date</label>
+                        <input formControlName="start_date" type="text" onfocus="this.type = 'date'" onblur="this.type = 'text'" placeholder="dd/mm/yyyy" class="form-control" id="exampleInputPassword1">
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">End Date </label>
+                        <input formControlName="end_date" type="text" onfocus="this.type = 'date'"  onblur="this.type = 'text'" placeholder="dd/mm/yyyy" class="form-control" id="exampleInputPassword1">
+                      </div>
+                   
+                 </div>
+                <div class="px-3 mt-3">
+                    <button 
+                    (click)="addCustomerAcctDetails(collectBankInformation, $event)" 
+                    type="submit" class="btn btn-primary">Initiate</button>
+                </div>
+              </form>
+    
+      </div>
+
+      <div [style.display]="page == 'successful' ? 'block': 'none'" class="container overflow-auto" style="height: 90vh;">
+          <div class="w-100 h-100 mt-5">
+            
+            <div class="image_object w-100 text-center">
+              <img style="max-width: 50%; object-fit: cover;" src="../../../assets/images/envelope.svg" alt="">
+            </div>
+
+            <div class="text_information text-center" >
+               <span class="d-block">
+                 The Customer has been sent an email.
+                 <span *ngIf="urlProvided">
+                   <a href="javascript:void(0)"> {{url}} </a> <span (click)="copyThisLink(url, $event)" class="copyLink px-2 py-1">copy</span>
+                 </span>
+               </span>
+            </div>
+          </div>
+          
+      </div>
+  </div>

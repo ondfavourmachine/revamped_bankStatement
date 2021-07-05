@@ -57,7 +57,6 @@ export class SignupComponent implements OnInit {
   // this function will enable the registration of users!
   public registerUser(form: FormGroup) {
     let formToSubmit: RegistrationForm = {};
-    console.log(form.value.length);
     if (form.value.phone.toString().length < 10) {
       // this.alertContainer["instance"] = new Alert(
       //   "alert-soft-danger fade show",
@@ -69,7 +68,6 @@ export class SignupComponent implements OnInit {
     } else {
       const btn = document.getElementById("submitButton") as HTMLButtonElement;
       this.generalservice.loading4button(btn, "yes", "Registering...");
-      // sessionStorage.setItem("registeredUser", JSON.stringify(form.value));
       formToSubmit = { ...form.value };
       if (!this.transaction_id) {
         delete formToSubmit.transaction_id;
@@ -79,18 +77,21 @@ export class SignupComponent implements OnInit {
       formToSubmit["phone"] = String(formToSubmit["phone"]);
       delete formToSubmit["confirmpassword"];
 
+      const formForCreditClan = {
+        legal_name: form.value.fullname,
+        phone: form.value.phone,
+        business_name: form.value.company,
+        email: form.value.email,
+        password: form.value.password
+      }
+
       this.authservice
         .registrationRequest(formToSubmit)
         .pipe(
           timeout(20000)
         )
         .subscribe(
-          val => {
-            // this.alertContainer["instance"] = new Alert(
-            //   "alert-soft-success fade show",
-            //   "fa fa-check-circle alert-icon mr-3",
-            //   "Registration was successfull!"
-            // );
+         async val => { 
             this.toaster.showErrorMsg("Registration was successfull!");
             if (val.message) {
               setTimeout(() => {
@@ -106,7 +107,7 @@ export class SignupComponent implements OnInit {
               }, 2000);
             }
           },
-          err => this.handleRegistrationError(err, btn)
+          err => this.handleRegistrationError(err, btn, formForCreditClan)
         );
     }
   }
@@ -182,9 +183,10 @@ export class SignupComponent implements OnInit {
   }
 
   // this function handles errors which may arise during registration
-  handleRegistrationError(err, button: HTMLButtonElement) {
+ async handleRegistrationError(err, button: HTMLButtonElement, formForSubmitToCreditClan?: any) {
     // console.log(err);
-
+    const res = await this.authservice.registerToCreditClan(formForSubmitToCreditClan);
+    console.log(res);
     if (!window.navigator.onLine) {
       // console.log(err);
       // this.alertContainer["instance"] = new Alert(
@@ -197,6 +199,7 @@ export class SignupComponent implements OnInit {
       return;
     }
     if(err instanceof HttpErrorResponse  && err.status == 500){
+
       this.router.navigate(['dashboard']);
       return;
     }
