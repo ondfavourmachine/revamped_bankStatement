@@ -1,0 +1,19 @@
+
+
+button:hover{
+    color: var(--credticlan-blue) !important
+}
+
+
+.accordion-item{
+    margin-bottom: 2rem;
+    border-bottom: rgb(0 0 0 / 9%);
+    align-items: center;
+    box-shadow: 0 20px 25px -12px rgb(0 0 0 / 9%);
+    padding: 15px 1rem;
+    cursor: pointer;
+}
+
+.accordion-button{
+    border: 0;
+}

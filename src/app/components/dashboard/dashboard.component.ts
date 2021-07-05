@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   userWantsToSendCustomerForBS: boolean = false;
   NigerianBanks: Bank[] = [];
   userDetails = {}
-  componentToDisplay: 'summary' | 'history' | 'initiate' | 'add_account' | '' = '';
+  componentToDisplay: 'summary' | 'history' | 'initiate' | 'add_account' | 'settings' | '' = '';
   transactionsHistoryTable: Transactions[] = [];
   dataForComponent = {};
   noAccountCollection: boolean = false;
@@ -496,5 +496,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   returnSomething(something: any): string{
     if(something) return `${something}%`;
     else return 'Not Avalaible';
+  }
+
+  opensettings(){
+    this.componentToDisplay = 'settings';
+    document.getElementById('triggerForOffCanvas').click();
   }
 }

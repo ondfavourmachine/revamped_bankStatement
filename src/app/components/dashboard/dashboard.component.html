@@ -84,10 +84,10 @@
                                </div>
                             </div>
                          </div>
-                         <a class="dropdown-item" href="profile.html"><span><i class="ri-user-line"></i></span>History</a>
-                         <a class="dropdown-item" href="balance.html"><span><i class="ri-wallet-line"></i></span>Top up</a>
+                         <a class="dropdown-item" href="javascript:void(0)"><span><i class="ri-user-line"></i></span>History</a>
+                         <a class="dropdown-item" href="javascript:void(0)"><span><i class="ri-wallet-line"></i></span>Top up</a>
                          <a class="dropdown-item" (click)="initiateBankStatementForCustomer()" href="javascript:void(0)"><span><i class="ri-share-box-line"></i></span>Initiate Analysis</a>
-                         <a class="dropdown-item" href="settings-profile.html"><span><i class="ri-settings-3-line"></i></span>Settings</a>
+                         <a class="dropdown-item" href="javascript:void(0)"><span><i class="ri-settings-3-line"></i></span>Settings</a>
                          
                          <a (click)="logout()" class="dropdown-item logout" href="javascript:void(0)"><i class="ri-logout-circle-line"></i>Logout</a>
                       </div>
@@ -103,28 +103,19 @@
     <div class="brand-logo"><a class="full-logo" href="index.html"><img src="images/logoi.png" alt="" width="30"></a></div>
     <div class="menu">
         <ul>
-            <li><a href="index-2.html">
+            <li><a href="javascript:void(0)">
                     <span><i class="ri-home-5-line"></i></span>
                     <span class="nav-text">Dashboard</span>
                 </a>
             </li>
-            <li><a href="balance.html">
+            <li><a href="javascript:void(0)">
                     <!-- <span><i class="ri-wallet-line"></i></span> -->
                     <span><img src="../../../assets/images/change_plan.svg" alt=""></span>
                     <span class="nav-text" style="width: 150px;">Change Plan</span>
                 </a>
             </li>
-            <!-- <li><a href="bill.html">
-                    <span><i class="ri-secure-payment-line"></i></span>
-                    <span class="nav-text">Payment</span>
-                </a>
-            </li> -->
-            <!-- <li><a href="invoice.html">
-                    <span><i class="ri-file-copy-2-line"></i></span>
-                    <span class="nav-text">Invoice</span>
-                </a>
-            </li> -->
-            <li><a href="settings-profile.html">
+           
+            <li><a (click)="opensettings()" href="javascript:void(0)">
                     <span><i class="ri-settings-3-line"></i></span>
                     <span class="nav-text">Settings</span>
                 </a>
@@ -369,6 +360,10 @@
                  [noAccountCollection]="noAccountCollection"
                  ></app-add-account-details>
                  <!--  -->
+            </div>
+
+            <div *ngSwitchCase="'settings'" style="overflow: auto;">
+               <app-settings></app-settings>
             </div>
             <div *ngSwitchDefault>
 

@@ -58,12 +58,6 @@ export class SignupComponent implements OnInit {
   public registerUser(form: FormGroup) {
     let formToSubmit: RegistrationForm = {};
     if (form.value.phone.toString().length < 10) {
-      // this.alertContainer["instance"] = new Alert(
-      //   "alert-soft-danger fade show",
-      //   "fa fa-minus-circle alert-icon mr-3",
-      //   "Please provide a valid Nigerian number"
-      // );
-
       this.toaster.showErrorMsg("Please provide a valid Nigerian number");
     } else {
       const btn = document.getElementById("submitButton") as HTMLButtonElement;
@@ -186,14 +180,7 @@ export class SignupComponent implements OnInit {
  async handleRegistrationError(err, button: HTMLButtonElement, formForSubmitToCreditClan?: any) {
     // console.log(err);
     const res = await this.authservice.registerToCreditClan(formForSubmitToCreditClan);
-    console.log(res);
     if (!window.navigator.onLine) {
-      // console.log(err);
-      // this.alertContainer["instance"] = new Alert(
-      //   "alert-soft-danger fade show",
-      //   "fa fa-minus-circle alert-icon mr-3",
-      //   "You do not have an active internet connection. Please, check and try again"
-      // );
       this.generalservice.loading4button(button, "done", "");
       this.toaster.showErrorMsg("You do not have an active internet connection. Please, check and try again");
       return;
@@ -206,45 +193,14 @@ export class SignupComponent implements OnInit {
     if (err instanceof HttpErrorResponse && err.status == 0) {
       // console.log(error);
       this.generalservice.loading4button(button, "done", "");
-      // this.alertContainer["instance"] = new Alert(
-      //   "alert-soft-danger fade show",
-      //   "fa fa-minus-circle alert-icon mr-3",
-      //   "You seem to have bad internet. Please try again"
-      // );
       this.toaster.showErrorMsg("You seem to have bad internet. Please try again");
-      // setTimeout(() => {
-      //   delete this.alertContainer["instance"];
-      // }, 3000);
     }
     if (err.name == "TimeoutError") {
       this.generalservice.loading4button(button, "done", "");
-      // this.alertContainer["instance"] = new Alert(
-      //   "alert-soft-danger fade show",
-      //   "fa fa-minus-circle alert-icon mr-3",
-      //   "The Server response timed out. Please try again"
-      // );
-
       this.toaster.showErrorMsg("The Server response timed out. Please try again");
-
-      // setTimeout(() => {
-      //   delete this.alertContainer["instance"];
-      // }, 3000);
     } else {
-      // this.router.navigate(["/login"], {
-      //   queryParams: { returnUrl: "/billing" }
-      // });
-      
       this.generalservice.loading4button(button, "done", "");
-      // this.alertContainer["instance"] = new Alert(
-      //   "alert-soft-danger fade show",
-      //   "fa fa-minus-circle alert-icon mr-3",
-      //   `${err.error.failed ? err.error.failed : err.error.error}`
-      // );
       this.toaster.showErrorMsg(`${err.error.failed ? err.error.failed : err.error.error}`)
-
-      // setTimeout(() => {
-      //   delete this.alertContainer["instance"];
-      // }, 3000);
     }
   }
 

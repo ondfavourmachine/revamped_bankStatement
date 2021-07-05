@@ -26,6 +26,7 @@ import { ChartsModule } from 'ng2-charts';
 import { InitiateBankStatementComponent } from './components/initiate-bank-statement/initiate-bank-statement.component';
 import { AddAccountDetailsComponent } from './components/add-account-details/add-account-details.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     SummaryComponent,
     HistoryComponent,
     InitiateBankStatementComponent,
-    AddAccountDetailsComponent
+    AddAccountDetailsComponent,
+    SettingsComponent
   ],
   imports: [
     NgxSkeletonLoaderModule.forRoot({ animation: 'pulse', appearance: 'line' }),
