@@ -198,12 +198,13 @@
                                         [type]="'settings'"></app-analysis-component> -->
                                         <div class="chart-wrapper w-100">
                                             <canvas baseChart 
-                                            [datasets]="barChartData"
-                                            [labels]="barChartLabels"
-                                            [options]="barChartOptions"
-                                            [plugins]="barChartPlugins"
-                                            [legend]="barChartLegend"
-                                            [chartType]="barChartType">
+                                                [datasets]="barChartData"
+                                                [labels]="barChartLabels"
+                                                [options]="barChartOptions"
+                                                [plugins]="barChartPlugins"
+                                                [legend]="barChartLegend"
+                                                [chartType]="barChartType"
+                                            >
                                           </canvas>
                                         </div>
                                         
@@ -279,11 +280,11 @@
                                     <tr *ngFor="let transaction of transactionsHistoryTable | slice:0:5; index as i">
                                        <td class="text-center info"> {{ transaction?.summary?.name_check?.account_name || 'Not Available' }} </td>
                                        <td class="text-center info"> {{transaction?.date | date: 'mediumDate'}} </td>
-                                       <td class="text-center info">{{ returnSomething(transaction?.analytics_score) }}</td>
+                                       <td class="text-center info">{{ generalservice.returnSomething(transaction?.analytics_score) }}</td>
                                        <td class="text-center info controlled"> {{ transaction?.file_url_remote || "Not Available"}} </td>
                                        <td class="text-center"> 
-                                           <span (click)="viewHistory(transaction)" class="goToHistory me-2">Summary</span> 
-                                           <a target="_blank" [href]="transaction?.summary?.link" class="goToHistory file">View report</a>
+                                           <span  (click)="viewHistory(transaction)" class="goToHistory me-2">Summary</span> 
+                                           <a target="_blank" [ngClass]="{'noSummary': returnAShowOrNot(transaction?.summary?.link) }" [href]="transaction?.summary?.link" class="goToHistory file">View report</a>
                                          </td>
                                        
                                     </tr>

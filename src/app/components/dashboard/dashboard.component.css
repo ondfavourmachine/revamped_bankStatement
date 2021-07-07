@@ -90,3 +90,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.noSummary {
+    pointer-events: none !important;
+    border: 1px solid #e5e5e5 !important;
+    color: #e5e5e5 !important;
+}

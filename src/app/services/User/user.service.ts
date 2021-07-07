@@ -120,4 +120,6 @@ export class UserService {
     return this.http.post<any>(`https://api-collections.creditclan.com/bankstatement/initialize`, obj);
   }
 
+ 
+
 }

@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   constructor(
     private userservice: UserService,
-    private authservice: AuthService, private generalservice: GeneralService, private router: Router) { 
+    private authservice: AuthService, public generalservice: GeneralService, private router: Router) { 
 
   }
 
@@ -77,10 +77,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit(){
-    
-    
-
-    
     this.getUserDetails();
     // this.attachDynamicClickEvent();
     this.checkIfTransactionIDIsPresentAndHandleIt();
@@ -97,6 +93,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
 
     this.fetchStatementHistory();
+  }
+
+  returnAShowOrNot(aString: string): boolean{
+    let boolToReturn = typeof aString == 'string' && (aString.length > 0 || aString != null) ? false : true;
+    return boolToReturn;
   }
 
   async retrieveAllDashboardData() {
@@ -407,6 +408,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       val => {
         document.querySelector('.statements_left').textContent = `${val.transactions.length}`;
         this.transactionsHistoryTable = val.transactions;
+        console.log(this.transactionsHistoryTable);
         this.loadingHistory = false;   
       },
       err => {
@@ -493,10 +495,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   
   }
 
-  returnSomething(something: any): string{
-    if(something) return `${something}%`;
-    else return 'Not Avalaible';
-  }
+ 
 
   opensettings(){
     this.componentToDisplay = 'settings';

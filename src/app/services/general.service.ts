@@ -187,4 +187,9 @@ export class GeneralService {
   activateNotificationFromLend(anything) {
     this.sendNotificationToLoginComponent.next(anything);
   }
+
+  returnSomething(something: any): string{
+    if(something) return `${something}%`;
+    else return 'Not Avalaible';
+  }
 }

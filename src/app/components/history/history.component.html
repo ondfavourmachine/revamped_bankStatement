@@ -3,7 +3,7 @@
     <h5 id="offcanvasRightLabel"></h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
-  <div class="offcanvas-body overflow-auto">
+  <div class="offcanvas-body overflow-auto" style="height: 90vh;">
       <div class="container">
         <div class="row">
             <h1>All History </h1>
@@ -27,7 +27,7 @@
                                     <tr *ngFor="let transaction of data; index as i">
                                         <td class="text-center info"> {{ transaction?.summary?.name_check?.account_name || 'Not Available' }} </td>
                                         <td class="text-center info"> {{transaction?.date | date: 'mediumDate'}} </td>
-                                        <td class="text-center info">{{ transaction?.analytics_score }}%</td>
+                                        <td class="text-center info">{{ generalservice.returnSomething(transaction?.analytics_score)  }}</td>
                                         <td class="text-center info controlled"> {{ transaction?.file_url_remote}} </td>
                                         <td class="text-center"> 
                                             <span  class="goToHistory me-2">Summary</span> 

@@ -15,26 +15,19 @@
           <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
             <div class="accordion-body">
                 <div class="w-100">
-                   <!-- <form action="">
-                    <input type="text" class="w-100 my-3">
-                    <input type="text" class="w-100 my-3">
-                   </form> -->
+                 
 
-                   <form>
+                   <form [formGroup]="passwordForm" (ngSubmit)="submitPassword(passwordForm, $event)">
                     <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">Email address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                      <label for="passwordInputEmail1" class="form-label">Old Password</label>
+                      <input type="password"  formControlName="old_password" class="form-control" id="passwordInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1">
+                      <label for="confirmPasswordInputPassword1" class="form-label">New Password</label>
+                      <input type="password" formControlName="new_password" class="form-control" id="confirmPasswordInputPassword1">
                     </div>
-                    <div class="mb-3 form-check">
-                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    
+                    <button [disabled]="!passwordForm.valid" type="submit" class="btn btn-primary">Submit</button>
                   </form>
                 </div>
             </div>
@@ -52,21 +45,13 @@
                 <div class="w-100">
                     
  
-                    <form>
+                    <form [formGroup]="fullNameForm" (ngSubmit)="submitFullName(fullNameForm, $event)">
                      <div class="mb-3">
-                       <label for="exampleInputEmail1" class="form-label">Email address</label>
-                       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                       <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                       <label for="fullNameInputEmail1" class="form-label">Full Name</label>
+                       <input formControlName="fullname" 
+                        type="email" class="form-control" id="fullNameInputEmail1" aria-describedby="emailHelp">  
                      </div>
-                     <div class="mb-3">
-                       <label for="exampleInputPassword1" class="form-label">Password</label>
-                       <input type="password" class="form-control" id="exampleInputPassword1">
-                     </div>
-                     <div class="mb-3 form-check">
-                       <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                       <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                     </div>
-                     <button type="submit" class="btn btn-primary">Submit</button>
+                     <button type="submit" class="btn btn-primary">Change full name</button>
                    </form>
                  </div>
             </div>
