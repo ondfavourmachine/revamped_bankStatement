@@ -113,8 +113,22 @@ export class SettingsComponent implements OnInit {
       .pipe(timeout(15000))
       .subscribe(
         val => {
-          this.toaster.showSuccessMsg('Full Name changed successfully.')
-          this.generalservice.loading4button(btn, "yes", "Change full Name");
+          const key = Object.keys(form.value)[0];
+          switch(key){
+            case 'fullname': 
+            this.toaster.showSuccessMsg('Full Name changed successfully.')
+           this.generalservice.loading4button(btn, "done", "Change full Name");
+            break;
+            case 'company':
+              this.toaster.showSuccessMsg('Company name changed successfully.')
+              this.generalservice.loading4button(btn, "done", "Change");
+            break;
+            case 'phone':
+              this.toaster.showSuccessMsg('Phone number updated successfully.')
+              this.generalservice.loading4button(btn, "done", "Submit");
+            break;
+          }
+          
           form.reset();
         },
         err => {
