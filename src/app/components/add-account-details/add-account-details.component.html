@@ -80,7 +80,7 @@
                <span class="d-block">
                  The Customer has been sent an email.
                  <span *ngIf="urlProvided">
-                   <a href="javascript:void(0)"> {{url}} </a> <span (click)="copyThisLink(url, $event)" class="copyLink px-2 py-1">copy</span>
+                   <a [href]="url" target="_blank"> {{url}} </a> <span (click)="copyThisLink(url, $event)" class="copyLink px-2 py-1">copy</span>
                  </span>
                </span>
             </div>

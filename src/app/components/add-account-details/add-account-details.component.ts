@@ -132,7 +132,7 @@ export class AddAccountDetailsComponent implements OnInit, OnChanges {
     const input = document.createElement('input') as HTMLInputElement;
     const span = event.target as HTMLSpanElement;
     const prevText = span.textContent;
-    input.value = url as string;
+    input.value = this.url || url;
     document.body.appendChild(input);
     input.select();
     input.setSelectionRange(0, 99999); /*For mobile devices*/
@@ -142,6 +142,6 @@ export class AddAccountDetailsComponent implements OnInit, OnChanges {
       span.textContent = prevText;
     }, 1500);
     
-    input.remove();
+    document.body.removeChild(input);
   }
 }
