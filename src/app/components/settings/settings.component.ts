@@ -20,6 +20,8 @@ interface ProfileUpdate {
 export class SettingsComponent implements OnInit {
   passwordForm: FormGroup;
   fullNameForm: FormGroup;
+  companyForm: FormGroup;
+  phoneForm: FormGroup;
   constructor(private fb: FormBuilder,
     private generalservice : GeneralService,
     private userservice: UserService,
@@ -35,8 +37,24 @@ export class SettingsComponent implements OnInit {
     this.fullNameForm = this.fb.group({
       fullname: ['', Validators.required]
     })
+
+    this.companyForm = this.fb.group({
+      company: ['', Validators.required]
+    })
+
+    this.phoneForm = this.fb.group({
+      phone: ['', Validators.required]
+    })
   }
 
+
+  numberOnly(event: KeyboardEvent){
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+  }
   
 
 
@@ -47,12 +65,13 @@ export class SettingsComponent implements OnInit {
       this.handlePasswordUpdate(obj, btn, form)
   }
 
-  submitFullName(form: FormGroup, event: Event){
+  submitProfileUpdate(form: FormGroup, event: Event){
     const btn = (event.target as HTMLFormElement).querySelector('button');
     const obj: ProfileUpdate  = {...form.value};
     this.generalservice.loading4button(btn, "yes", "Updating...");
     this.handleProfileUpdate(obj, btn, form)
   }
+
 
   
   async handlePasswordUpdate(
