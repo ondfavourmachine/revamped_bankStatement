@@ -12,7 +12,7 @@ export class HistoryComponent implements OnInit {
   constructor(public generalservice: GeneralService) { }
 
   ngOnInit(): void {
-    console.log(this.data);
+    console.log(this.data[0].file_url_remote);
   }
 
 }

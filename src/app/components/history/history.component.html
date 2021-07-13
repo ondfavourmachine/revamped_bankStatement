@@ -28,7 +28,7 @@
                                         <td class="text-center info"> {{ transaction?.summary?.name_check?.account_name || 'Not Available' }} </td>
                                         <td class="text-center info"> {{transaction?.date | date: 'mediumDate'}} </td>
                                         <td class="text-center info">{{ generalservice.returnSomething(transaction?.analytics_score)  }}</td>
-                                        <td class="text-center info controlled"> {{ transaction?.file_url_remote}} </td>
+                                        <td class="text-center info controlled"> <a href="javascript:void(0)" style="height: 50px; width: 50px;"  [download]="transaction?.file_url_remote"><img style="max-width: 100%; object-fit: cover;" src="../../../assets/images/download_file.svg" alt=""></a> </td>
                                         <td class="text-center"> 
                                             <span  class="goToHistory me-2">Summary</span> 
                                             <a target="_blank" [href]="transaction?.summary?.link" class="goToHistory file">View report</a>
