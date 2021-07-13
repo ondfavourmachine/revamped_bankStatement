@@ -424,6 +424,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   viewHistory(transaction: Transactions){
+    console.log(transaction);
    ( document.getElementById('triggerForOffCanvas') as HTMLElement).click();
    
    const { 
@@ -460,9 +461,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.generalservice.globalNotificationModal(e);
       this.generalservice.loading4Anchor(ccopen, "done", "Analyse");
     }
-    // else {
-    //   console.error;
-    // }
+  
   }
 
   allHistory(){
@@ -501,4 +500,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.componentToDisplay = 'settings';
     document.getElementById('triggerForOffCanvas').click();
   }
+
+  viewHistoryFromHistory(transaction: Transactions){
+    ( document.getElementById('triggerForOffCanvas') as HTMLElement).click();
+
+    setTimeout(() => {
+     this.viewHistory(transaction);  
+    }, 400);
+
+  }
+  
 }

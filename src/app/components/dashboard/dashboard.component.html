@@ -84,7 +84,7 @@
                                </div>
                             </div>
                          </div>
-                         <a class="dropdown-item" href="javascript:void(0)"><span><i class="ri-user-line"></i></span>History</a>
+                         <a class="dropdown-item" (click)="allHistory()"  href="javascript:void(0)"><span><i class="ri-user-line"></i></span>History</a>
                          <a class="dropdown-item" href="javascript:void(0)"><span><i class="ri-wallet-line"></i></span>Top up</a>
                          <a class="dropdown-item" (click)="initiateBankStatementForCustomer()" href="javascript:void(0)"><span><i class="ri-share-box-line"></i></span>Initiate Analysis</a>
                          <a class="dropdown-item" (click)="opensettings()" href="javascript:void(0)"><span><i class="ri-settings-3-line"></i></span>Settings</a>
@@ -344,6 +344,7 @@
             </div>
             <div *ngSwitchCase="'history'">
                 <app-history
+                (viewASummary)="viewHistoryFromHistory($event)"
                 [data]="dataForComponent"
                  ></app-history>
                  <!--  -->
